@@ -223,10 +223,14 @@ class Tooltip extends React.Component {
       if (this.delayTimer) {
         clearTimeout(this.delayTimer);
       }
-      this.delayTimer = setTimeout(() => {
+      if (visible === false && this.props.closeImmediately) {
         this.setVisible(visible);
-        this.delayTimer = null;
-      }, delay);
+      } else {
+        this.delayTimer = setTimeout(() => {
+          this.setVisible(visible);
+          this.delayTimer = null;
+        }, delay);
+      }
     } else {
       this.setVisible(visible);
     }
@@ -242,6 +246,7 @@ Tooltip.propTypes = {
   overlayStyle: React.PropTypes.object,
   wrapStyle: React.PropTypes.object,
   delay: React.PropTypes.number,
+  closeImmediately: React.PropTypes.bool,
 };
 
 Tooltip.defaultProps = {

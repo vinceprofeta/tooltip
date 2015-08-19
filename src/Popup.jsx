@@ -1,5 +1,6 @@
 import React from 'react';
 import {getToolTipClassByPlacement} from './utils';
+import {findDOMNode} from 'react-dom';
 import Align from 'rc-align';
 import Animate from 'rc-animate';
 
@@ -35,11 +36,11 @@ const Popup = React.createClass({
   },
 
   getPopupDomNode() {
-    return React.findDOMNode(this);
+    return findDOMNode(this);
   },
 
   getTarget() {
-    return React.findDOMNode(this.props.wrap).firstChild;
+    return findDOMNode(this.props.wrap).firstChild;
   },
 
   getTransitionName() {
